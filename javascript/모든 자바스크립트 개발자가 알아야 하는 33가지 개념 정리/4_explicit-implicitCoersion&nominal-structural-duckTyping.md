@@ -54,7 +54,7 @@ undefined ? 4 : 1; // 1
 **그 외 연산자(-, \*, /, %)**
 
 - 더하기 연산자를 제외한 연산자에서는 숫자의 우선순위가 문자보다 높음.
-- 숫자가 아닌 문자열이 들어갈 경우 연산이 불가능해 NAN이 반환됨.
+- 숫자가 아닌 문자열이 들어갈 경우 연산이 불가능해 `NaN`이 반환됨.
 
 ```javascript
 3 * '3'; // 3 * 3
@@ -76,7 +76,7 @@ Number('text'); // NaN
 
 **객체(Object)**
 
-자바스크립트에서 객체의 대부분의 암묵적 형변환은 결과 값으로 [object Object]를 반환함.
+자바스크립트에서 객체의 대부분의 암묵적 형변환은 결과 값으로 `[object Object]`를 반환함.
 
 ```javascript
 'name' + {}; // "name[object Object]"
@@ -124,7 +124,7 @@ const bar = {
 
 **배열 객체(Array Object)**
 
-배열에서 상속된 toString 메소드는 약간 다르게 동작합니다. 이것은 배열에서 아무런 인자도 넣지 않은 join 메소드를 호출한 것과 비슷한 방식으로 작동하게 됨.
+배열에서 상속된 `toString` 메소드는 약간 다르게 동작합니다. 이것은 배열에서 아무런 인자도 넣지 않은 `join` 메소드를 호출한 것과 비슷한 방식으로 작동하게 됨.
 
 ```javascript
 [1, 2, 3].toString() // "1,2,3"
@@ -201,6 +201,7 @@ two.valueOf(); // 2
 ```
 
 **Falsy와 Truthy**
+
 모든 자바스크립트 값은 `true`나 `false`로 변환될 수 있는 특성을 갖고 있음. `true`로 형변환을 강제하는 것을 truthy라고 함. 또 `false`로 형변환을 강제하는 것을 falsy라고 함.
 
 다음은 자바스크립트에서 반환 시에 falsy로 취급되는 값들임.
@@ -316,7 +317,7 @@ coerceThenCheckNaN(10); // false
 명시적 변환(Explicit Conversion)은 개발자가 의도적으로 형변환을 하는 것.
 명시적 형변환은 주로 `String, Number, Boolean` 타입으로 이루어짐.
 `symbol`은 자주 사용되지 않고, `null`과 `undefined`는 자료형이면서 동시에 값이기 때문에 필요한 경우 그냥 그 값을 할당하면 됨.
-`object`도 `Date` 객체를 숫자로 변환하는 특별한 경우가 아니라면, 그냥 순전히 값을 object로 만들면 만들었지 굳이 `object`로 형 변환하는 일은 없음.
+`object`도 `Date` 객체를 숫자로 변환하는 특별한 경우가 아니라면, 그냥 순전히 값을 `object`로 만들면 만들었지 굳이 `object`로 형 변환하는 일은 없음.
 
 ### String()
 
@@ -332,9 +333,9 @@ console.log(String(null)); // null
 console.log(String({ name: 'bigtop' })); // [object Object]
 ```
 
-문자열이 아닌 값을 문자열로 바꾸려면 이렇게 String 함수를 활용하면 되는데, 소괄호 안에 값을 넣어주면 그 값이 문자열로 변함.
+문자열이 아닌 값을 문자열로 바꾸려면 이렇게 `String` 함수를 활용하면 되는데, 소괄호 안에 값을 넣어주면 그 값이 문자열로 변함.
 
-객체의 경우에는 "[object Object]"가 출력되는데 우리가 바라보는 객체의 모양 그대로를 문자열로 만들고 싶은 경우에는 JSON객체의 `stringify` 메소드를 활용해야함.
+객체의 경우에는 `[object Object]` 가 출력되는데 우리가 바라보는 객체의 모양 그대로를 문자열로 만들고 싶은 경우에는 JSON객체의 `stringify` 메소드를 활용해야함.
 
 ```javascript
 console.log(JSON.stringify({ name: 'bigtop' })); // {"name": "bigtop"}
@@ -355,15 +356,15 @@ console.log(Number({ name: 'bigtop' })); // NaN
 console.log(Number({})); // NaN
 ```
 
-마찬가지로 숫자가 아닌 값을 숫자로 바꾸려면 이렇게 Number함수를 활용하면 됨.
+마찬가지로 숫자가 아닌 값을 숫자로 바꾸려면 이렇게 `Number` 함수를 활용하면 됨.
 
 - 빈 문자열은 0으로 반환
-- 숫자와 문자가 혼합된 문자열은 NaN 반환
-- Boolean 형태의 값은 true는 1, false는 0 반환
-- null은 0, undefined는 NaN 반환
-- 빈 객체는 NaN 반환
+- 숫자와 문자가 혼합된 문자열은 `NaN` 반환
+- `Boolean` 형태의 값은 `true`는 1, `false`는 0 반환
+- `null`은 0, `undefined`는 `NaN` 반환
+- 빈 객체는 `NaN` 반환
 
-참고로 '123a'와 같은 숫자와 문자가 혼합된 경우에도 숫자로 시작하는 문자열인 경우 parseInt 혹은 parseFloat 함수를 사용하면 숫자 형태로 변환이 가능함.
+참고로 '123a'와 같은 숫자와 문자가 혼합된 경우에도 숫자로 시작하는 문자열인 경우 `parseInt` 혹은 `parseFloat` 함수를 사용하면 숫자 형태로 변환이 가능함.
 
 ```javascript
 // 첫 문자가 숫자인 경우 parseInt는 정수형으로 해석이 가능한 만큼 숫자로 변환.
@@ -434,7 +435,7 @@ Foo foo = new Bar();
 ## 구조적 타이핑(Structural Typing)
 
 구조적 타이핑(Structural Typing)은 맴버에 따라 타입을 검사하는 방법이다.
-명칭적 타이핑(Nominal Typing)과 반대되는 방법으로 `TypeScript, Go`등에서 사용한다.
+명칭적 타이핑(Nominal Typing)과 반대되는 방법으로 TypeScript, Go 등에서 사용한다.
 구조적 타이핑(Structural Typing)은 두 데이터의 타입 구조를 비교하여 호환되는 타입인지 검사함.
 한 타입이 다른 타입이 갖는 맴버를 모두 가지고 있을 경우 두 타입은 호환되는 타입임.
 
@@ -486,7 +487,7 @@ printPoint (newVPoint);
 
 ## 덕 타이핑(Duck Typing)
 
-컴퓨터 프로그래밍 분야에서 **덕 타이핑(duck typing)**은 동적 타이핑의 한 종류로, 객체의 변수 및 메소드의 집합이 객체의 타입을 결정하는 것을 말함. 클래스 상속이나 인터페이스 구현으로 타입을 구분하는 대신, **덕 타이핑은 객체가 어떤 타입에 걸맞은 변수와 메소드를 지니면 객체를 해당 타입에 속하는 것으로 간주함.**
+컴퓨터 프로그래밍 분야에서 **덕 타이핑(duck typing)** 은 동적 타이핑의 한 종류로, 객체의 변수 및 메소드의 집합이 객체의 타입을 결정하는 것을 말함. 클래스 상속이나 인터페이스 구현으로 타입을 구분하는 대신, **덕 타이핑은 객체가 어떤 타입에 걸맞은 변수와 메소드를 지니면 객체를 해당 타입에 속하는 것으로 간주함.**
 
 "어떤 새가 오리처럼 걷고, 헤엄치고, 소리를 낸다면 그 새를 오리라고 부를 것이다."
 
