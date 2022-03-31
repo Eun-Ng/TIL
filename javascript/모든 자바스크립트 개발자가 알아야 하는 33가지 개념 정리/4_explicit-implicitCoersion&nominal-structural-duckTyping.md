@@ -1,9 +1,9 @@
 ## 암시적 형변환(Implicit Coercion)
 
-Javascript의 암시적 형변환은 정해지지 않은 값 유형을 예상되는 유형으로 강제 변환하려는 Javascript의 성질이다.
-이로 인해 사용자는 숫자 값을 넘겨야 하는 곳에 문자열을 넣을 수도 있고, 문자열을 넣어야 하는 곳에 객체를 넘기는 실수를 할 수도 있다.
-이는 Javascript의 주요 기능이지만, 가장 피해야 할 기능이다.
-Javascript는 다른 언어와 달리 타입에 굉장히 유연하다.
+Javascript의 암시적 형변환은 정해지지 않은 값 유형을 예상되는 유형으로 강제 변환하려는 Javascript의 성질.
+이로 인해 사용자는 숫자 값을 넘겨야 하는 곳에 문자열을 넣을 수도 있고, 문자열을 넣어야 하는 곳에 객체를 넘기는 실수를 할 수도 있음.
+이는 Javascript의 주요 기능이지만, 가장 피해야 할 기능임.
+Javascript는 다른 언어와 달리 타입에 굉장히 유연함.
 
 ```javascript
 3 * '3'; // 9
@@ -37,24 +37,24 @@ undefined ? 4 : 1; // 1
 
 **String(문자열)**
 
-숫자 문자(Numeric Characters)를 가졌다면 어떤 문자열이라도 동등한 숫자로 바뀝니다. 하지만 만일 문자열에 숫자가 아닌 것(Non-Numeric Characters)이 포함되어 있으면 NaN(Not a Number)을 리턴하게 됩니다
+숫자 문자(Numeric Characters)를 가졌다면 어떤 문자열이라도 동등한 숫자로 바뀜. 하지만 만일 문자열에 숫자가 아닌 것(Non-Numeric Characters)이 포함되어 있으면 NaN(Not a Number)을 리턴하게 됨.
 
 **더하기 연산자(+)**
 
-더하기 연산자는 크게 2가지 기능을 수행한다.
+더하기 연산자는 크게 2가지 기능을 수행함.
 
 - 수학적인 덧셈
 - 문자열 합치기
 
-또한, 더하기 연산자는 두가지 특징을 지닌다.
+또한, 더하기 연산자는 두가지 특징을 지님.
 
-- 더하기 연산자에서는 문자의 우선순위가 숫자보다 높다.
-- 객체와 함수 또한 문자보다 우선순위가 낮다.
+- 더하기 연산자에서는 문자의 우선순위가 숫자보다 높음.
+- 객체와 함수 또한 문자보다 우선순위가 낮음.
 
 **그 외 연산자(-, \*, /, %)**
 
-- 더하기 연산자를 제외한 연산자에서는 숫자의 우선순위가 문자보다 높다.
-- 숫자가 아닌 문자열이 들어갈 경우 연산이 불가능해 NAN이 반환된다.
+- 더하기 연산자를 제외한 연산자에서는 숫자의 우선순위가 문자보다 높음.
+- 숫자가 아닌 문자열이 들어갈 경우 연산이 불가능해 NAN이 반환됨.
 
 ```javascript
 3 * '3'; // 3 * 3
@@ -75,13 +75,14 @@ Number('text'); // NaN
 ```
 
 **객체(Object)**
-자바스크립트에서 객체의 대부분의 암묵적 형변환은 결과 값으로 [object Object]를 반환한다.
+
+자바스크립트에서 객체의 대부분의 암묵적 형변환은 결과 값으로 [object Object]를 반환함.
 
 ```javascript
 'name' + {}; // "name[object Object]"
 ```
 
-모든 자바스크립트 객체는 `toString` 메소드를 상속받습니다. 상속받은 `toString` 메소드는 객체가 문자열 타입으로 변해야 할 때마다 쓰인다. `toString`의 반환 값은 문자열 합치기(string concatenation) 혹은 수학적 표현식(mathematical expressions)과 같은 연산에서 쓰이게 된다.
+모든 자바스크립트 객체는 `toString` 메소드를 상속받음. 상속받은 `toString` 메소드는 객체가 문자열 타입으로 변해야 할 때마다 쓰임. `toString`의 반환 값은 문자열 합치기(string concatenation) 혹은 수학적 표현식(mathematical expressions)과 같은 연산에서 쓰이게 됨.
 
 ```javascript
 const foo = {};
@@ -94,7 +95,7 @@ const baz = {
 baz + '!'; // "I'm object baz!"
 ```
 
-객체가 수학적 표현식 사이에 들어갔을 때는, 자바스크립트는 반환 값을 숫자로 변환하려 할 것이다.
+객체가 수학적 표현식 사이에 들어갔을 때는, 자바스크립트는 반환 값을 숫자로 변환하려 할 것임.
 
 ```javascript
 const foo = {
@@ -122,6 +123,7 @@ const bar = {
 ```
 
 **배열 객체(Array Object)**
+
 배열에서 상속된 toString 메소드는 약간 다르게 동작합니다. 이것은 배열에서 아무런 인자도 넣지 않은 join 메소드를 호출한 것과 비슷한 방식으로 작동하게 됨.
 
 ```javascript
@@ -134,8 +136,6 @@ const bar = {
 4 + [1,2,3] // "41,2,3"
 4 * [1,2,3] // NaN
 ```
-
-배열을 어딘가로 넘길 때는 언제나 toString 메소드를 거치면 어떻게 되는지를 생각해봅시다. 숫자로 변할지 문자열로 변할지 말이죠.
 
 ```javascript
 4 * []; // 0
@@ -167,7 +167,8 @@ Number(''); // 0
 ```
 
 **valueOf 메소드**
-문자열이나 숫자가 올 곳에 객체를 넘길 때마다 자바스크립트 엔진에 의해 사용될 valueOf메소드를 정의하는 것도 가능함.
+
+문자열이나 숫자가 올 곳에 객체를 넘길 때마다 자바스크립트 엔진에 의해 사용될 `valueOf` 메소드를 정의하는 것도 가능함.
 
 ```javascript
 const foo = {
@@ -178,7 +179,7 @@ const foo = {
 3 * foo; // 9
 ```
 
-객체에 toString과 valueOf메소드가 전부 정의되어 있을 때는 자바스크립트 엔진은 valueOf메소드를 사용함.
+객체에 `toString`과 `valueOf` 메소드가 전부 정의되어 있을 때는 자바스크립트 엔진은 `valueOf` 메소드를 사용함.
 
 ```javascript
 const bar = {
@@ -191,7 +192,7 @@ const bar = {
 2 + bar; // 7
 ```
 
-valueOf메소드는 객체가 어떠한 숫자값을 나타낼 때 사용하기 위해 만들어짐.
+`valueOf` 메소드는 객체가 어떠한 숫자값을 나타낼 때 사용하기 위해 만들어짐.
 
 ```javascript
 const two = new Number(2);
@@ -200,7 +201,7 @@ two.valueOf(); // 2
 ```
 
 **Falsy와 Truthy**
-모든 자바스크립트 값은 true나 false로 변환될 수 있는 특성을 갖고 있음. true로 형변환을 강제하는 것을 truthy라고 함. 또 false로 형변환을 강제하는 것을 falsy라고 함.
+모든 자바스크립트 값은 `true`나 `false`로 변환될 수 있는 특성을 갖고 있음. `true`로 형변환을 강제하는 것을 truthy라고 함. 또 `false`로 형변환을 강제하는 것을 falsy라고 함.
 
 다음은 자바스크립트에서 반환 시에 falsy로 취급되는 값들임.
 
@@ -266,6 +267,7 @@ add(0); // no error
 ```
 
 **NaN(Not a Number)**
+
 `NaN`은 자기 자신과도 같지 않은 특별한 숫자 값.
 Javascript에서 유일하게 자기 자신과 같지 않은 값.
 
@@ -332,7 +334,7 @@ console.log(String({ name: 'bigtop' })); // [object Object]
 
 문자열이 아닌 값을 문자열로 바꾸려면 이렇게 String 함수를 활용하면 되는데, 소괄호 안에 값을 넣어주면 그 값이 문자열로 변함.
 
-객체의 경우에는 "[object Object]"가 출력되는데 우리가 바라보는 객체의 모양 그대로를 문자열로 만들고 싶은 경우에는 JSON객체의 stringify 메서드를 활용해야함.
+객체의 경우에는 "[object Object]"가 출력되는데 우리가 바라보는 객체의 모양 그대로를 문자열로 만들고 싶은 경우에는 JSON객체의 `stringify` 메소드를 활용해야함.
 
 ```javascript
 console.log(JSON.stringify({ name: 'bigtop' })); // {"name": "bigtop"}
