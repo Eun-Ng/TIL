@@ -1,4 +1,4 @@
-## Javascript의는 싱글 스레드 언어
+## Javascript는 싱글 스레드 언어
 
 Javascript는 싱글 스레드 언어입니다. 즉, 한 번에 하나의 작업 혹은 한 번의 코드 조각을 처리할 수 있습니다.  
 엄밀히 말하면, Javascript의 메인 스레드인 이벤트 루프가 싱글 스레드입니다.  
@@ -19,7 +19,7 @@ Javascript는 싱글 스레드 언어입니다. 즉, 한 번에 하나의 작업
 
 비동기적 실행: 비 순차적으로 작업을 실행. 이전 작업의 실행 여부가 다음 작업에 영향을 끼치지 않습니다. 작업이 완료되는데 시간이 걸리고, 실행 결과 값이 다음 작업에 영향을 끼치지 않는다면 비동기적으로 실행 할 수 있습니다.
 
-Javascript의는 엔진이 단 하나의 `Call Stack`으로 코드를 실행하기 기본적으로 동기 실행 언어입니다. 하지만 비동기적 실행이 불가능한 것은 아닙니다. Javascript의에서 비동기적 작업을 처리하기 위해서는 `Call Stack`만이 아닌 `Callback Queue`와 `EventLoop`의 도움이 필요합니다.
+Javascript는 엔진이 단 하나의 `Call Stack`으로 코드를 실행하기 기본적으로 동기 실행 언어입니다. 하지만 비동기적 실행이 불가능한 것은 아닙니다. Javascript의에서 비동기적 작업을 처리하기 위해서는 `Call Stack`만이 아닌 `Callback Queue`와 `Event Loop`의 도움이 필요합니다.
 
 ## Javascript의 런타임 과정
 
@@ -54,7 +54,7 @@ Javascript의 런타임에는 처리할 메시지 목록과 실행할 관련 콜
 브라우저에서 제공하는 `API` 로, `DOM, Ajax, Timeout` 등이 있습니다.  
 `Call Stack`에서 실행된 비동기 함수는 `Web API`를 호출하고, `Web API`는 콜백함수를 `Callback Queue`에 밀어 넣습니다.
 
-## 이벤트 루프(event loop)
+## 이벤트 루프(Event Loop)
 
 `Call Stack`과 `Callback Queue`의 상태를 체크하여, `Call Stack`이 빈 상태가 되면, `Callback Queue`의 첫번째 콜백을 `Call Stack`으로 밀어넣습니다.  
 이러한 반복적인 행위를 틱(tick)이라고 칭합니다.

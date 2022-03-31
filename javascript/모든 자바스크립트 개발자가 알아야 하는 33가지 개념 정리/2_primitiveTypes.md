@@ -1,7 +1,7 @@
-## 원시 자료형(Primitive Types)
+## 원시자료형(Primitive Types)
 
-Javascript에서 원시 자료형(primitive)이란 객체가 아니면서 메서드도 가지지 않는 데이터 입니다.  
-대부분의 경우, 원시 값은 언어 구현체의 가장 저급한(low level) 단계에서 나타납니다.  
+Javascript에서 `원시자료형(Primitive)`이란 객체가 아니면서 메서드도 가지지 않는 데이터 입니다.  
+대부분의 경우, 원시 값은 언어 구현체의 가장 저급한(Low Level) 단계에서 나타납니다.  
 모든 원시 값은 불변하여 변형할 수 없습니다.  
 원시 값 자체와, 원시값을 할당한 변수를 혼동하지 않는 것이 중요합니다.  
 변수는 새로운 값을 다시 할당할 수 있지만, 이미 생성한 원시 값은 객체, 배열, 함수와는 달리 변형할 수 없습니다.
@@ -115,13 +115,13 @@ const hugeBin = BigInt(
 
 ![2_primitiveTypes](./images/2_primitiveTypes.png)
 
-컴퓨터 과학에서, 불린(boolean)은 논리적인 데이터 유형입니다.  
-불린은 참(true) 혹은 거짓(false) 값만을 가질 수 있습니다.  
-Javascript에서 불린의 조건은 어떤 코드 부문이 실행되어야 할 지(예를 들어 if 절 안에서) 또는 어떤 코드 부문을 반복해야 할지(예를 들어 for 문 안에서) 결정하는 데 쓰입니다.  
-이처럼 Boolean 타입은 주로 조건문에 자주 사용하며 **0, -0, null, false, NaN, undefined, 빈 문자열 ("")은 false**로 간주됩니다.  
-문자열 "false"를 포함한 그 외 모든 다른 값은 **초기값을 true로** 설정합니다.
+컴퓨터 과학에서 `Boolean` 타입은 논리적인 데이터 유형입니다.  
+`Boolean`은 `참(true)` 혹은 `거짓(false)` 값만을 가질 수 있습니다.  
+Javascript에서 `Boolean`의 조건은 어떤 코드 부문이 실행되어야 할 지(예를 들어 if 절 안에서) 또는 어떤 코드 부문을 반복해야 할지(예를 들어 for 문 안에서) 결정하는 데 쓰입니다.  
+이처럼 `Boolean`타입은 주로 조건문에 자주 사용하며 **0, -0, null, false, NaN, undefined, 빈 문자열 ("")은 false**로 간주됩니다.  
+문자열 `false`를 포함한 그 외 모든 다른 값은 초기값을 `true`로 설정합니다.
 
-아래는 불린이 쓰일 수 있는 예시를 보여주는 유사코드(실행 가능한 코드가 아님)입니다.
+아래는 `Boolean`이 쓰일 수 있는 예시를 보여주는 유사코드(실행 가능한 코드가 아님)입니다.
 
 ```Javascript
 **_Javascript if Statement_**
@@ -178,7 +178,7 @@ console.log("x's value is", x); // "x's value is undefined" 출력
 Javascript는 대소문자를 구별하므로 `null`은 `Null, NULL` 등과 다릅니다.
 
 **null 사용 시, 주의할 점**
-타입을 나타내는 문자열을 반환하는 `typeOf` 연산자로 `null` 값을 연산해보면 `null`이 아닌 `object` 값이 나옵니다.  
+타입을 나타내는 문자열을 반환하는 `typeof` 연산자로 `null` 값을 연산해보면 `null`이 아닌 `object` 값이 나옵니다.  
 이는 Javascript 초기 설계상의 오류입니다.
 
 ```Javascript
@@ -186,7 +186,7 @@ var foo = null;
 console.log(typeof foo); // object
 ```
 
-따라서 `null` 타입을 확인할 때는 `typeOf` 연산자 대신 일치 연산자(===)를 사용해야 합니다.
+따라서 `null` 타입을 확인할 때는 `typeof` 연산자 대신 일치 연산자(===)를 사용해야 합니다.
 
 ```Javascript
 var foo = null;
@@ -195,4 +195,5 @@ console.log(foo === null); // true
 ```
 
 참고자료:
-https://velog.io/@surim014/%EC%9B%B9%EC%9D%84-%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94-%EA%B7%BC%EC%9C%A1-Javascript%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80-part.2
+
+- https://velog.io/@surim014/%EC%9B%B9%EC%9D%84-%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94-%EA%B7%BC%EC%9C%A1-Javascript%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80-part.2
