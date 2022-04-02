@@ -1,8 +1,8 @@
-## ==(Equal Operator, 이중등호, 동등연산자)
+## ==(Equal Operator, 이중 등호, 동등 연산자)
 
-Javascript에서 동등연산자를 사용할 때는 두 변수의 값만 체크합니다. 값만 같다면 true가 반환됩니다.
+Javascript에서 동등 연산자를 사용할 때는 두 변수의 값만 체크합니다. 값만 같다면 true가 반환됩니다.
 
-<예제1>
+<예제 1>
 
 ```Javascript
 var a = 3;
@@ -13,7 +13,7 @@ a == c; // true
 b == c; // true
 ```
 
-<예제2>
+<예제 2>
 
 ```Javascript
 ✔ 0값은 false와 동일하므로 -> true 출력
@@ -25,15 +25,15 @@ b == c; // true
 2 == "2" // expected output: true
 ```
 
-==(동등연산자)는 양 옆의 값을 비교하기 전에 강제적으로 암시적 형변환(Implicit Coercion)를 수행합니다.  
+==(동등 연산자)는 양 옆의 값을 비교하기 전에 강제적으로 암시적 형변환(Implicit Coercion)를 수행합니다.  
 강제적인 형변환 과정을 통해 피연산자들을 공통된 타입으로 만들고 그 안에 있는 값만을 비교하는, '느슨한 비교'를 합니다.
 
-## ===(Strict Equal Operator, 삼중등호, 일치연산자)
+## ===(Strict Equal Operator, 삼중 등호, 일치 연산자)
 
-Javascript에서 일치연산자를 사용할 때는 엄격히 동일한지를 체크합니다.  
-값이 같을뿐만 아니라, `유형(Type)`도 같아야 `true`값이 반환됩니다.
+Javascript에서 일치 연산자를 사용할 때는 엄격히 동일한지를 체크합니다.  
+값이 같을 뿐만 아니라, `유형(Type)`도 같아야 `true`값이 반환됩니다.
 
-<예제1>
+<예제 1>
 
 ```Javascript
 5 === 5;
@@ -69,7 +69,7 @@ console.log(typeof 2);	// expected output: "number"
 console.log(typeof "2");  // expected output: "string"
 ```
 
-===(일치연산자)는 ==(동등연산자)와 달리 암시적 형변환(Implicit Coercion) 과정을 수행하지 않는 '엄격한 비교'를 수행합니다.
+===(일치 연산자)는 ==(동등 연산자)와 달리 암시적 형변환(Implicit Coercion) 과정을 수행하지 않는 '엄격한 비교'를 수행합니다.
 
 ## typeof
 
@@ -102,7 +102,7 @@ typeof [];
 
 Javascript는 배열(array) 자료구조를 제공하지만, `typeof`는 배열(array)을 구분하지 못합니다.  
 `typeof []`는 `object`를 반환합니다.  
-`typeof`는 배열을 식별하지 못하기 때문에 배열을 구분하기 위해서는 `Array.isArray()`라는 다른 함수를 사용해야합니다.  
+`typeof`는 배열을 식별하지 못하기 때문에 배열을 구분하기 위해서는 `Array.isArray()`라는 다른 함수를 사용해야 합니다.  
 이는 객체를 구체적으로 구분을 해야 하는 상황에서는 별도의 함수를 정의해서 사용해야 한다는 의미이기도 합니다.
 
 ## Summary
