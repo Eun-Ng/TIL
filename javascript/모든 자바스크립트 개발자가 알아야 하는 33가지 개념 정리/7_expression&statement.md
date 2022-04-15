@@ -42,3 +42,83 @@ function() {} // 함수 리터럴
 - 함수 호출의 결과 또한 하나의 값을 반환하기에 식입니다.
 
 ### 문(Statement)
+
+- 문은 프그램을 구성하는 기본 단위이자 최소 실행 단위입니다.
+- Javascript에서 문은 값이 들어가야 할 곳에 들어갈 수 없습니다.
+- 따라서 문은 함수의 인자, 대입 연산된 값, 연산자의 피연산자, 반환 값으로 사용할 수 없습니다.
+
+```Javascript
+foo(if (true) { return 2 }) // Error
+```
+
+Javascript에서 사용되는 문은 아래와 같습니다.
+
+1. `if`
+2. `if-else`
+3. `while`
+4. `do-while`
+5. `for`
+6. `switch`
+7. `for-in`
+8. `debugger`
+9. `variable declaration`
+
+```Javascript
+if (true) { 9 + 9 } // 18
+```
+
+문을 사용해서 결과값을 출력하였지만, 문의 결과를 표현식처럼 사용할 수 없습니다.  
+지금까지 배운 내용으로는 문은 아무런 값도 반환하면 안됐습니다.  
+따라서 우리는 이 반환된 값을 이용할 수 없고, 따라서 문(Statement)이 반환하는 값은 의미가 없습니다.
+
+### 함수 선언, 함수 표현식, 네임드(Named) 함수 표현식
+
+- 함수 선언문은 문(Statement)이다.
+
+```Javascript
+function foo(func) {
+  return func.name
+}
+```
+
+- 익명 함수라 불리는 함수 표현식 또한 식(Expression)이다.
+
+```Javascript
+foo(function () {} ) // ''
+```
+
+- 이름이 있는 네임드(Named) 함수 표현식 또한 식(Expression)이다.
+
+```Javascript
+foo(function myName () {} ) // 'myName'
+```
+
+```Javascript
+if () {
+  function foo () {} // 함수 선언문
+}
+
+function foo () {} // 함수 선언문
+
+function foo () {
+  function bar() {} //함수 선언문
+}
+
+function foo () {
+  return function bar () {} // 네임드 함수 표현식
+}
+
+foo(function () {}) // 익명 함수 표현식
+
+function foo () {
+  return function bar () {
+    function baz () {} // 함수 선언문
+  }
+}
+
+function () {} // SyntaxError: function statement requires a name
+
+if (true){
+  function () {} //SyntaxError: function statement requires a name
+}
+```
