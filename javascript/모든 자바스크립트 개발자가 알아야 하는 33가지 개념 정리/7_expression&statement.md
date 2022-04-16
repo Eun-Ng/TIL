@@ -73,7 +73,7 @@ if (true) { 9 + 9 } // 18
 
 ### 함수 선언, 함수 표현식, 네임드(Named) 함수 표현식
 
-- 함수 선언문은 문(Statement)이다.
+- 함수 선언문은 문(Statement)입니다.
 
 ```Javascript
 function foo(func) {
@@ -81,17 +81,21 @@ function foo(func) {
 }
 ```
 
-- 익명 함수라 불리는 함수 표현식 또한 식(Expression)이다.
+- 익명 함수라 불리는 함수 표현식 또한 식(Expression)입니다.
 
 ```Javascript
 foo(function () {} ) // ''
 ```
 
-- 이름이 있는 네임드(Named) 함수 표현식 또한 식(Expression)이다.
+- 이름이 있는 네임드(Named) 함수 표현식 또한 식(Expression)입니다.
 
 ```Javascript
 foo(function myName () {} ) // 'myName'
 ```
+
+- 원래 값이 들어올 곳에 함수를 선언하게되면, Javascript는 그 함수를 값으로 사용하려고 합니다.
+- 선언된 함수가 값으로 사용될 수 없다면 에러가 발생합니다.
+-
 
 ```Javascript
 if () {
