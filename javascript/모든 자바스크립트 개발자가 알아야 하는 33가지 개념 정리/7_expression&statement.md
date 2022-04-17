@@ -95,7 +95,6 @@ foo(function myName () {} ) // 'myName'
 
 - 원래 값이 들어올 곳에 함수를 선언하게 되면, Javascript는 그 함수를 값으로 사용하려고 합니다.
 - 선언된 함수가 값으로 사용될 수 없다면 에러가 발생합니다.
--
 
 ```Javascript
 if () {
