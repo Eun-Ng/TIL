@@ -156,34 +156,3 @@ foo(); // 표현식 문
 ```Javascript
 console.log(2+2;) // Error. 세미콜론이 추가된 문(Statement)은 값이 될 수 없기에 식(Expression)의 자리에 들어가지 못합니다.
 ```
-
-### IIFE(Immediately Invoked Function Expression, 즉시 실행되는 함수 표현식)
-
-```Javascript
-(function () {
-    statements
-})();
-```
-
-- IIFE란? 정의와 동시에 즉시 실행되는 함수입니다. **일종의 괄호로 둘러싸인 익명함수**입니다.
-- IIFE는 1. 불필요한 변수를 추가해 **전역 스코프 지저분해지는 것을 방지** 2. **IIFE 내부로 다른 변수들의 접근 방지** 두 가지의 필요성을 지니고 있습니다.
-
-```Javascript
-// IIFE 내부에서 정의된 변수는 외부 범위에서 접근이 불가능합니다.
-(function () {
-    var myName = "eun";
-})();
-
-myName // "Uncaught ReferenceError: myName is not defined"
-```
-
-- IIFE를 변수에 할당하면 IIFE 자체는 저장되지 않고, 함수가 실행된 결과만 저장됩니다.
-
-```Javascript
-var result = (function () {
-    var name = "eun";
-    return name;
-})();
-// 즉시 결과를 생성합니다.
-result; // "eun"
-```
