@@ -1,6 +1,6 @@
 ## DOM
 
-**문서 객체 모델(DOM, Document Object Model)**이란 HTML, XML 문서의 프로그래밍 interface입니다. DOM은 문서의 구조화된 표현(structured representation)을 제공하며 **프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공**하여 그들이 문서 구조, 스타일, 내용 등을 변경할 수 있게 돕습니다.  
+**문서 객체 모델(DOM, Document Object Model)** 이란 HTML, XML 문서의 프로그래밍 interface입니다. DOM은 문서의 구조화된 표현(structured representation)을 제공하며 **프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공**하여 그들이 문서 구조, 스타일, 내용 등을 변경할 수 있게 돕습니다.  
 **DOM은 HTML 문서의 계층적 구조와 정보를 표현하며 이를 제어할 수 있는 API, 즉 프로퍼티와 메서드를 제공하는 트리 자료구조입니다.**
 
 ### DOM API
@@ -26,8 +26,7 @@ DOM은 웹 문서의 동적 변경을 위해 프로그래밍 언어가 자신에
 
 ![DOM tree의 객체 구성](./images/13_dom%26HTMLElement.png)
 
-### DOM Traversing(탐색)
-
 ### Reference
 
+<hr>
 https://poiemaweb.com/js-dom
