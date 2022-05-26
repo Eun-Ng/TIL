@@ -310,16 +310,100 @@ console.log(Unit1.체력);
 let data = {
   odd: [],
   even: [],
-  set setter(num) {
-    // if ((num/2) = 1) {
-    //   odd = [...num]
-    // } else {
-    //   even = [...num]
-    // }
+  setterFunc: function (...num) {
+    num.forEach((a) => {
+      if (a % 2 == 1) {
+        this.odd.push(a);
+      } else {
+        this.even.push(a);
+      }
+    });
   },
-  get getter() {
-    return this.num.sort();
+  getterFunc: function () {
+    return [...this.odd, ...this.even].sort();
   },
 };
 
-// data.setter(1, 2, 3, 4, 5);
+data.setterFunc(5, 1, 2, 3, 4);
+console.log(data.odd, data.even);
+console.log(data.getterFunc());
+
+// destructuring
+const des = [2, 3];
+const [a, b, c = 10] = des;
+
+console.log(a, b, c);
+
+const desObj = {name: "Kim", age: 30};
+
+function desFunc({name, age}) {
+  console.log(name, age);
+}
+
+desFunc({name: "Kim", age: 30}); // 파라미터로 Object 넣기 가능, Array도 가능
+
+export let 신체정보 = {
+  body: {
+    키: 200,
+    몸무게: 150,
+  },
+  size: ["XLarge", 35],
+};
+
+let {
+  body: {키, 몸무게},
+  size: [상의, 하의],
+} = 신체정보;
+
+console.log(하의);
+
+// Asynchronous
+// console.log(1);
+// setTimeout(() => {
+//   console.log(2);
+// }, 1000);
+// console.log(3);
+
+// call back function. 콜백함수는 단순 함수 디자인 패턴일 뿐. 비동기 처리는 Web API 이용하는 setTimeout, addEventListener 등만 가능
+function firstFunc(param) {
+  console.log("firstFunc");
+  param();
+}
+
+function secondFunc() {
+  console.log("secondFunc");
+}
+
+firstFunc(secondFunc);
+
+// promise. 콜백함수의 대체품
+const prom = new Promise(function (resolve, reject) {
+  let plus = 1 + 1;
+  resolve(plus);
+});
+prom
+  .then(function (plus) {
+    console.log(plus);
+    console.log("성공");
+  })
+  .catch(function () {
+    console.log("실패");
+  });
+
+const prom1 = new Promise(function (resolve, reject) {
+  let test = document.querySelector("#test");
+  test.addEventListener("load", function () {
+    resolve();
+  });
+  test.addEventListener("error", function () {
+    reject();
+  });
+});
+
+prom1
+  .then(function (test) {
+    console.log("로딩 성공");
+  })
+  .catch(function (test) {
+    console.log("로딩 실패");
+  });
