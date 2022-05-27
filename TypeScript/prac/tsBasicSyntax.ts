@@ -2,8 +2,21 @@ let 이름: string = "Namgung";
 
 // union type
 let product: string[] | number = ["shirts", "pants"];
+let numbers: (number | string)[] = [1, "2", 3];
+let obj: {a: number | string} = {a: "123"};
 
-let 손흥민: {name: string} = {name: "손흥민"};
+// any type. 모든 자료형 허용
+let any: any;
+any = 123;
+any = "123";
+any = true;
+any = {};
+any = [];
+
+// unknown type. any랑 기능은 똑같지만 보다 안정됨
+let unknown = 123;
+
+let un: string = "123"; // Input number? -> error
 
 // type alias. 타입을 변수에 담아 사용가능
 type Size = string | number;
