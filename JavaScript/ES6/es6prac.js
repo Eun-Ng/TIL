@@ -49,12 +49,12 @@ arr.allPlus = () => {
 arr.allPlus();
 
 // 3번
-document.querySelector("#버튼").addEventListener("click", function () {
-  setTimeout(() => {
-    console.log(this);
-    console.log(this.innerHTML);
-  }, 2000);
-});
+// document.querySelector("#버튼").addEventListener("click", function () {
+//   setTimeout(() => {
+//     console.log(this);
+//     console.log(this.innerHTML);
+//   }, 2000);
+// });
 
 // spread operator
 const sumArr = [10, 20, 30];
@@ -377,33 +377,80 @@ function secondFunc() {
 firstFunc(secondFunc);
 
 // promise. 콜백함수의 대체품
-const prom = new Promise(function (resolve, reject) {
-  let plus = 1 + 1;
-  resolve(plus);
-});
-prom
-  .then(function (plus) {
-    console.log(plus);
-    console.log("성공");
+// const prom = new Promise(function (resolve, reject) {
+//   let plus = 1 + 1;
+//   resolve(plus);
+// });
+// prom
+//   .then(function (plus) {
+//     console.log(plus);
+//     console.log("성공");
+//   })
+//   .catch(function () {
+//     console.log("실패");
+//   });
+
+// let imageLoad = new Promise(function (resolve, reject) {
+//   let test = document.querySelector("#test");
+//   test.addEventListener("load", function () {
+//     resolve();
+//   });
+//   test.addEventListener("error", function () {
+//     reject();
+//   });
+// });
+
+// imageLoad
+//   .then(function (test) {
+//     console.log("로딩 성공");
+//   })
+//   .catch(function (test) {
+//     console.log("로딩 실패");
+//   });
+
+// promise chaining
+let ajaxFunc = (url) => {
+  return new Promise((resolve, reject) => {
+    $.get(url)
+      .done((result) => {
+        resolve(result);
+      })
+      .catch((reject) => {
+        console.log("Failed");
+      });
+  });
+};
+
+let txtLoad = ajaxFunc("https://codingapple1.github.io/hello.txt");
+
+txtLoad
+  .then((result) => {
+    console.log(result);
+    return ajaxFunc("https://codingapple1.github.io/hello2.txt");
   })
-  .catch(function () {
-    console.log("실패");
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((reject) => {
+    console.log("Failed");
   });
 
-const prom1 = new Promise(function (resolve, reject) {
-  let test = document.querySelector("#test");
-  test.addEventListener("load", function () {
-    resolve();
+// async, await
+let btnFunc = async () => {
+  let promise = new Promise((resolve, reject) => {
+    const testBtn = document
+      .querySelector("#버튼")
+      .addEventListener("click", () => {
+        resolve("성공했어요");
+      });
   });
-  test.addEventListener("error", function () {
-    reject();
-  });
-});
 
-prom1
-  .then(function (test) {
-    console.log("로딩 성공");
-  })
-  .catch(function (test) {
-    console.log("로딩 실패");
-  });
+  try {
+    let result = await promise;
+    console.log(result);
+  } catch {
+    console.log("저런.. 에러가 났네요");
+  }
+};
+
+btnFunc();
