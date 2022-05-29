@@ -123,3 +123,56 @@ let 자료 = {
 }; // 1. Object value 값을 그대로 타입으로 지정해줌 2. readonly가 적용됨. Object 잠그기 가능
 const mine = (a) => { };
 mine(자료.name);
+const funcType = (a) => {
+    return 10;
+};
+const cutZero = (a) => {
+    let result = a.replace(/0/g, "");
+    return result;
+};
+const rmDash = (a) => {
+    let result = a.replace(/-/g, "");
+    return Number(result);
+};
+console.log(cutZero("11110000"));
+console.log(rmDash("010-1234-5678"));
+const allFunc = (a, func1, func2) => {
+    let result = func1(a);
+    let result2 = func2(result);
+    console.log(result2);
+};
+allFunc("010-1234-5678", cutZero, rmDash);
+// DOM Manipulation
+// JS와는 다르게 DOM 조작을 할때도 narrowing이 필요함
+// 1. if문
+const title1 = document.querySelector("#title");
+if (title1 !== null) {
+    title1.innerHTML = "반가워요";
+}
+// 2. instanceof 연산자
+const title2 = document.querySelector("#title");
+if (title2 instanceof Element) {
+    title2.innerHTML = "반가워요";
+}
+// 3. assertion
+const title3 = document.querySelector("#title");
+title3.innerHTML = "반가워요";
+// 4. ?. optional chaining
+const title4 = document.querySelector("#title");
+if (title4?.innerHTML !== undefined) {
+    title4.innerHTML = "반가워요";
+}
+// TypeScript를 이용해 DOM 조작시 해당 요소의 타입을 narrowing 해야함
+const link = document.querySelector(".link");
+if (link instanceof HTMLAnchorElement) {
+    link.href = "https://www.kakao.com";
+}
+const btn = document.querySelector("#button");
+btn?.addEventListener("click", function () {
+    console.log("hi");
+});
+const changeImg = document.querySelector("#image");
+if (changeImg instanceof HTMLImageElement) {
+    changeImg.src =
+        "https://images.unsplash.com/photo-1653815918843-13a7072eeff8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
+}
