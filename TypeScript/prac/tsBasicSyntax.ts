@@ -26,7 +26,7 @@ type newMember = {
   [key: string]: string; // 모든 Object 속성
 };
 
-let member1: newMember = {name: "mike", sex: "male"};
+let member1: newMember = {name: "mike", gender: "male"};
 
 // class 타입 지정
 class User {
@@ -272,3 +272,53 @@ if (changeImg instanceof HTMLImageElement) {
   changeImg.src =
     "https://images.unsplash.com/photo-1653815918843-13a7072eeff8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80";
 }
+
+// class type
+class TypeClass {
+  name: string;
+  constructor(param: string) {
+    this.name = param;
+  }
+}
+
+let 사람1 = new TypeClass("hi");
+
+class Car {
+  model: string;
+  price: number;
+  constructor(a: string, b: number) {
+    this.model = a;
+    this.price = b;
+  }
+  tax(): number {
+    return this.price * 0.1;
+  }
+}
+
+let car1 = new Car("소나타", 3000);
+console.log(car1);
+console.log(car1.tax());
+
+// 타입별 배열 반환
+class Word {
+  num;
+  str;
+  constructor(...param: (string | number)[]) {
+    let numbers: number[] = [];
+    let words: string[] = [];
+
+    param.forEach((i) => {
+      if (typeof i === "number") {
+        numbers.push(i);
+      } else if (typeof i === "string") {
+        words.push(i);
+      }
+    });
+
+    this.num = numbers;
+    this.str = words;
+  }
+}
+
+let word = new Word("kim", 123, 456, 789, "park");
+console.log(word);
