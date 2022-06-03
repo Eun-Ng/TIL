@@ -1,5 +1,5 @@
 const minimum = (a: number, b: number, c: number): number => {
-  let answer!: number;
+  let answer: number = 0;
 
   if (a < b) {
     answer = a;

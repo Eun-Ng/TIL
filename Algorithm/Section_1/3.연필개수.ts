@@ -1,5 +1,5 @@
 const pencil = (n: number): number => {
-  let answer!: number;
+  let answer: number = 0;
   // answer = Math.ceil(n / 12); // 간단한 방법
 
   if (n / 12 === 0) {
