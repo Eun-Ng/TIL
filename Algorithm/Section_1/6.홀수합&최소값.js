@@ -1,5 +1,5 @@
 const odd = (arr3) => {
-    let answer;
+    let answer = [];
     let sum = 0;
     let min = arr3[0];
     arr3.forEach((a) => {

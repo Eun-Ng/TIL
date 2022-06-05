@@ -1,6 +1,6 @@
 const triangle = (a, b, c) => {
     let answer = "Yes";
-    let max;
+    let max = 0;
     let sum = a + b + c;
     if (a < b) {
         max = b;
