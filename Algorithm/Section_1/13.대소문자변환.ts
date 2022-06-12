@@ -4,7 +4,7 @@ const convertStr = (a: string): string => {
   for (let x of a) {
     if (x === x.toUpperCase()) {
       answer += x.toLowerCase();
-    } else if (x.toLowerCase()) {
+    } else if (x === x.toLowerCase()) {
       answer += x.toUpperCase();
     }
   }
