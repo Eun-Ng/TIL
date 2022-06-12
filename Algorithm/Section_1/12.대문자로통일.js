@@ -11,4 +11,4 @@ const allUpper = (a) => {
     return answer;
 };
 const str4 = "ItIsTimeToStudy";
-console.log(allUpper(str4));
+console.log(allUpper(str4)); // ITISTIMETOSTUDY
