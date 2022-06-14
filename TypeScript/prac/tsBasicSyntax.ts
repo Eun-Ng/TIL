@@ -322,3 +322,87 @@ class Word {
 
 let word = new Word("kim", 123, 456, 789, "park");
 console.log(word);
+
+// interface. 중복선언 가능
+interface SquareCol {
+  color: string;
+}
+interface Square extends SquareCol {
+  width: number;
+}
+
+let 네모: Square = {color: "red", width: 100};
+
+// intersection type. type은 중복선언 불가능
+type Cat = {
+  name: string;
+};
+type meow = {age: number} & Animal;
+
+interface Product {
+  brand: string;
+  serialNumber: number;
+  model: string[];
+}
+
+let 상품: Product = {
+  brand: "Samsung",
+  serialNumber: 1360,
+  model: ["TV", "phone"],
+};
+
+interface Cart {
+  product: string;
+  price: number;
+}
+
+let shoppingCart: Cart[] = [
+  {product: "청소기", price: 7000},
+  {product: "삼다수", price: 800},
+];
+
+interface Card extends Cart {
+  card: boolean;
+}
+
+interface calcFunc {
+  plus: (a: number, b: number) => number;
+  minus: (a: number, b: number) => number;
+}
+
+const calcObj: calcFunc = {
+  plus(a, b) {
+    return a + b;
+  },
+  minus(a, b) {
+    return a - b;
+  },
+};
+
+// return Max Number
+const maxNum = (...a: number[]): number => {
+  let answer: number = 0;
+
+  for (let x of a) {
+    if (answer < x) {
+      answer = x;
+    }
+  }
+
+  return answer;
+};
+
+console.log(maxNum(6, 3, 7, 9));
+
+// destructuring
+type UserType = {
+  user: string;
+  comment: number[];
+  admin: boolean;
+};
+
+const desFunc = ({user, comment, admin}: UserType): void => {
+  console.log(user, comment, admin);
+};
+
+desFunc({user: "kim", comment: [3, 5, 4], admin: false});
