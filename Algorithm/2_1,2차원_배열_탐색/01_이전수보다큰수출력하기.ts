@@ -12,4 +12,4 @@ const bigNum = (a: number[], b: number): number[] => {
 };
 
 const arr = [7, 3, 9, 5, 6, 12];
-console.log(bigNum(arr, 6));
+console.log(bigNum(arr, 6)); // [7, 9, 6, 12]
