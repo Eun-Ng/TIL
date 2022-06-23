@@ -343,3 +343,8 @@ function lengthCheck(x) {
 }
 lengthCheck('hello');
 lengthCheck(['kim', 'park']);
+let data = '{"name": "Eun", "age": 27}';
+const convertObject = (a) => {
+    return JSON.parse(a);
+};
+console.log(convertObject(data));

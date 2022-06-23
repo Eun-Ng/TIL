@@ -541,3 +541,17 @@ function lengthCheck<T extends string | string[]>(x: T) {
 
 lengthCheck<string>('hello');
 lengthCheck<string[]>(['kim', 'park']);
+
+// 2. JSON -> Object
+interface Eun {
+  name: string;
+  age: number;
+}
+
+let data = '{"name": "Eun", "age": 27}';
+
+const convertObject = <T>(a: string): T => {
+  return JSON.parse(a);
+};
+
+console.log(convertObject(data));
