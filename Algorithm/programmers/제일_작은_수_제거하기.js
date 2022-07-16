@@ -9,12 +9,14 @@ arr은 길이 1 이상인 배열입니다.
 */
 
 const solution = (arr) => {
-  let answer = arr;
-
+  // 1. 스프레드 연산자로 배열을 벗겨낸 뒤
+  // 2. Math.min으로 최솟값을 구하고
+  // 3. indexOf로 해당 최솟값의 인덱스 값을 구한 뒤
+  // 4. splice 메서드로 해당 최솟값부터 1번째 인덱스 값만 자름
   arr.splice(arr.indexOf(Math.min(...arr)), 1);
   if (arr.length <= 1) arr.push(-1);
-
-  return answer;
+  // 5. 만약 배열의 길이가 1이하라면 배열에 -1을 푸쉬
+  return arr;
 };
 
 console.log(solution([4, 3, 2, 1]));

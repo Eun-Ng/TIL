@@ -14,10 +14,14 @@ https://school.programmers.co.kr/learn/courses/30/lessons/12943
 */
 
 const solution = (n) => {
+  // 제약조건을 이용해 500번까지 for문 돌려서,
   for (let i = 0; i <= 500; i++) {
+    // n이 1이면 i를 반환하고
     if (n === 1) return i;
+    // 삼항연산자로 n이 짝수면 n은 n/2 값을 저장, 아니면 n = n * 3 +1 값을 저장해 반복문 반복
     n % 2 === 0 ? (n = n / 2) : (n = n * 3 + 1);
   }
+  // 500번 반복할떄까지 1인 안된다면 -1 리턴
   return -1;
 };
 
