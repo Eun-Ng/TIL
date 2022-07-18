@@ -57,7 +57,7 @@ const solution = (str) => {
     let arr = answer.split(words[i]);
     // console.log(arr);
     answer = arr.join(i);
-    // console.log('hi', answer); <- 로그 찍히는거 쉽게 보려고 'hi' 문자열 추가
+    // console.log('hi', answer); // <- 로그 찍히는거 쉽게 보려고 'hi' 문자열 추가
   }
   return Number(answer);
 };
