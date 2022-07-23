@@ -8,10 +8,11 @@ https://school.programmers.co.kr/learn/courses/30/lessons/87389
 3 ≤ n ≤ 1,000,000
 */
 
-const solution = (n) => {
-  let answer = [];
+const solution = (n: number): number => {
+  let answer: number[] | number = [];
+
+  // for문을 0부터 n과 같거나 작아질때까지 돌림
   for (let i = 0; i <= n; i++) {
-    // for문을 0부터 n과 같거나 작아질때까지 돌림
     if (n % i === 1) {
       // 매개변수 n값이 i 인덱스 값으로 나눴을때 1이 나온다면 우리가 찾는 수이기에
       answer.push(i); // 빈 배열에 해당값을 푸쉬
