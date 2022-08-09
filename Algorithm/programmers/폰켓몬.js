@@ -26,7 +26,7 @@ const solution = (nums) => {
   const answer = [];
   // 빈 배열과 최대로 가질 수 있는 포켓몬의 수를 담은 변수 선언
   const maxNum = nums.length / 2;
-
+  // 포켓몬이 4마리가 들어온다면, 내가 최대로 고를 수 있는 포켓몬은 2마리. 단, 포켓몬의 종류가 달라야 함.
   for (let i = 0; i < nums.length; i++) {
     // for문이 매개변수의 길이만큼 돌면서
     if (answer.length < maxNum) {
@@ -39,13 +39,17 @@ const solution = (nums) => {
 };
 
 // 다른 사람의 풀이. 테스트 타임이 가장 빠르다.
-// const solution = (nums) => {
-//   let answer = [...new Set(nums)],
-//     limit = nums.length / 2;
+const solution2 = (nums) => {
+  let answer = [...new Set(nums)],
+    limit = nums.length / 2;
 
-//   return answer.length > limit ? limit : answer.length;
-// };
+  return answer.length > limit ? limit : answer.length;
+};
 
 console.log(solution([3, 1, 2, 3]));
 console.log(solution([3, 3, 3, 2, 2, 4]));
 console.log(solution([3, 3, 3, 2, 2, 2]));
+
+// console.log(solution2([3, 1, 2, 3]));
+// console.log(solution2([3, 3, 3, 2, 2, 4]));
+// console.log(solution2([3, 3, 3, 2, 2, 2]));

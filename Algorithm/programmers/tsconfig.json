@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "noImplicitAny": true,
-    "strictNullChecks": true
-  }
-}
