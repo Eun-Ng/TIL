@@ -15,8 +15,9 @@ arr = [4, 4, 4, 3, 3] 이면 [4, 3] 을 return 합니다.
 
 const solution = (arr) => {
   const answer = [];
-  for (let i = 0; i < arr.length; i++) {
-    // 배열의 i번째 요소와 i + 1번쨰 요소가 일치하지 않는다면
+
+  for (let i = 0; i <= arr.length; i++) {
+    // 배열의 i번째 요소와 i + 1번쨰 요소가 일치하지 않으면
     if (arr[i] !== arr[i + 1]) {
       // 빈 배열에 배열의 i번째 요소 푸쉬
       answer.push(arr[i]);
