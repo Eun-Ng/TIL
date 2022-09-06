@@ -40,3 +40,49 @@ try {
 } catch (error) {
   error;
 }
+
+// null이나 undefined가 아님을 보장. 비추. ! 대신 if 사용
+// const head: Element = document.querySelector('#head')!;
+// console.log(head);
+
+// const head = document.querySelector('#head');
+// if (head) {
+//   head.innerHTML = 'hello world';
+//   console.log(head);
+// }
+
+/**  1 - 5. */
+// template literal type
+type World = 'world' | 'hell';
+
+// type Greeting = 'hello world'
+type Greeting = `hello ${World}`;
+const world: Greeting = 'hello hell';
+
+// Array, tuple type
+let strArr: string[] = [];
+let strArr2: Array<string> = [];
+function rest(...args: string[]) {}
+
+const tuple: [string, number] = ['1', 1];
+// tuple[2] = 'hello'; 얘는 막아주는데
+tuple.push('hello'); // 얘는 못막아줌
+
+/**  1 - 6. enum, keyof, typeof */
+// enum. 서로 연관된 상수들을 하나의 namespace로 묶어 추상화시키기 위해 도입된 것.
+const enum EDirection {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+
+const up = EDirection.Up; // 0
+
+// as const. type assertion의 일종으로 리터럴 타입의 추론 범위를 줄이고 값의 재할당을 막기 위한 목적으로 만들어짐.
+const ODirection = {
+  Up: 0,
+  Down: 1,
+  Left: 2,
+  Right: 3,
+} as const;
