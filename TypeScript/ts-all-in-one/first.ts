@@ -79,10 +79,25 @@ const enum EDirection {
 
 const up = EDirection.Up; // 0
 
-// as const. type assertion의 일종으로 리터럴 타입의 추론 범위를 줄이고 값의 재할당을 막기 위한 목적으로 만들어짐.
+// as const. type assertion의 일종으로 리터럴 타입의 추론 범위를 줄이고 값의 재할당을 막기 위한 목적으로 만들어짐. 프로퍼티들을 상수로 사용 가능.
 const ODirection = {
   Up: 0,
   Down: 1,
   Left: 2,
   Right: 3,
 } as const;
+
+// 값 자체를 -> 타입으로 바꾸고 싶을때 typeof, key 값들만 뽑고 싶을때는 keyof
+const obj1 = {a: '123', b: 'hello', c: 'world'} as const;
+// type Key = keyof typeof obj1 // 키 값만 뽑아냄
+type Key = typeof obj1[keyof typeof obj1]; // 밸류 값만 뽑아냄
+
+// Using the enum as a parameter
+function walk(dir: EDirection) {}
+
+// It requires an extra line to pull out the keys
+type Direction = typeof ODirection[keyof typeof ODirection];
+function run(dir: Direction) {}
+
+walk(EDirection.Left);
+run(ODirection.Right);
