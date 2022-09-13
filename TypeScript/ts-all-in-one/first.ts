@@ -1,4 +1,5 @@
 import {NoSubstitutionTemplateLiteral} from 'typescript';
+import {useNavigate} from 'react-router-dom';
 
 // 기본적으로 변수, 속성, 매개변수, 리턴값에 타입이 붙음
 const a = '5';
@@ -101,3 +102,12 @@ function run(dir: Direction) {}
 
 walk(EDirection.Left);
 run(ODirection.Right);
+
+// union type(|) 둘 중에 한 속성만 있어도 됨
+// function uni(x: string | number, y: string | number): string | number {
+//   return x + y;
+// }
+
+// intersection(&). 두 속성 모두 만족해야함
+type Amp = {hello: 'world'} & {type: 'script'};
+const ts: Amp = {hello: 'world', type: 'script'};
