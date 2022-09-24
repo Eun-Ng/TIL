@@ -1,5 +1,3 @@
-import {NoSubstitutionTemplateLiteral} from 'typescript';
-
 // 기본적으로 변수, 속성, 매개변수, 리턴값에 타입이 붙음
 const a = '5';
 const b = 5;
