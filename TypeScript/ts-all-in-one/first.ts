@@ -1,5 +1,4 @@
 import {NoSubstitutionTemplateLiteral} from 'typescript';
-import {useNavigate} from 'react-router-dom';
 
 // 기본적으로 변수, 속성, 매개변수, 리턴값에 타입이 붙음
 const a = '5';
