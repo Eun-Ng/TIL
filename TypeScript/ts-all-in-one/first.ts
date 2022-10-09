@@ -1,3 +1,5 @@
+import {textChangeRangeIsUnchanged} from 'typescript';
+
 // 기본적으로 변수, 속성, 매개변수, 리턴값에 타입이 붙음
 const a = '5';
 const b = 5;
@@ -105,6 +107,23 @@ run(ODirection.Right);
 //   return x + y;
 // }
 
-// intersection(&). 두 속성 모두 만족해야함
+// intersection(&). 두 속성 모두 만족해야함. union(|)은 하나만 만족해도 됨
 type Amp = {hello: 'world'} & {type: 'script'};
 const ts: Amp = {hello: 'world', type: 'script'};
+
+// type alias & interface
+type Animal = {breath: true};
+type Mammal = Animal & {breed: true};
+type Human = Mammal & {think: true};
+const eun: Human = {breath: true, breed: true, think: true};
+
+interface A {
+  breath: true;
+}
+interface B extends A {
+  breed: true;
+}
+const inter: B = {breath: true, breed: true, think: true};
+interface A {
+  think: true;
+}
