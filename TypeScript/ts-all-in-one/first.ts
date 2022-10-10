@@ -127,3 +127,49 @@ const inter: B = {breath: true, breed: true, think: true};
 interface A {
   think: true;
 }
+
+// 객체 리터럴 잉여 속성 검사
+interface O {
+  a: string;
+}
+// const obj2: O = {a: 'hello', b: 'world'}; // Error
+// 중간에 다른 변수 하나를 껴서 입력하면 검사를 안함
+const obj2 = {a: 'hello', b: 'world'};
+const obj3: O = obj2;
+
+// void type. 리턴 값이 없거나 undefined인 타입
+function forEach(arr: number[], callback: (el: number) => undefined): void; // 함수 선언
+function forEach() {
+  // 구현부
+}
+
+// declare 사용시 함수 타입 선언만 가능. 단, 컴파일시 사라짐.
+// declare function forEach(arr: number[], callback: (el: number) => undefined): void; // 함수 선언
+
+// unknown & any. unknown은 사용시 타입 명시해줘야 함.
+try {
+} catch (error) {
+  // 타입스크립트에서 제공하는 Error 타입
+  (error as Error).message;
+}
+
+// 타입 가드
+function numOrStr(a: number | string) {
+  if (typeof a === 'string') {
+    a.split(',');
+  } else {
+    a.toFixed(1);
+  }
+}
+numOrStr('123');
+numOrStr(1);
+
+function numOrNumArr(a: number | number[]) {
+  if (Array.isArray(a)) {
+    // number[]
+    a.slice(1);
+  } else {
+    // number
+    a.toFixed(1);
+  }
+}
