@@ -173,3 +173,18 @@ function numOrNumArr(a: number | number[]) {
     a.toFixed(1);
   }
 }
+
+// readonly
+interface Read {
+  readonly a: string;
+  b: string;
+}
+
+const aaaa: Read = {a: 'hello', b: 'world'};
+
+// Index Signature
+type Is = {[key: string]: string}; // 어떤 키든간에 전부 문자열이고, 값도 전부 문자열
+
+// Mapped Types
+type Mt = 'Human' | 'Mammal' | 'Animal';
+type M = {[key in Mt]: number}; // 키가 무조건 B 셋 중에 하나.
