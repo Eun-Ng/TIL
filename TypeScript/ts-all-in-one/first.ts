@@ -188,3 +188,53 @@ type Is = {[key: string]: string}; // 어떤 키든간에 전부 문자열이고
 // Mapped Types
 type Mt = 'Human' | 'Mammal' | 'Animal';
 type M = {[key in Mt]: number}; // 키가 무조건 B 셋 중에 하나.
+
+// readonly
+interface Imp {
+  readonly a: string;
+  b: string;
+  c: string;
+}
+
+// private, protected
+class Pri implements Imp {
+  private a: string = 'Hello';
+  protected b: string = 'World';
+  c: string = '!';
+}
+class Pro extends Pri {}
+// new Pro().a; // can't use
+// new Pro().b; // can't use
+new Pro().c;
+
+// abstract class, abstract method
+abstract class User {
+  abstract work(user: User): boolean;
+}
+class Work extends User {
+  work(user: User): boolean {
+    return true;
+  }
+}
+
+// optional
+function abc(a: number, b?: number, c?: number) {}
+abc(1);
+abc(1, 2);
+abc(1, 2, 3);
+
+let opt: {a: string; b?: string} = {a: 'hello', b: 'world'};
+opt = {a: 'hello'};
+
+// generic
+function gen<T extends string>(x: T, y: T): T {
+  return x + y;
+}
+gen(1, 2);
+gen('1', '2');
+
+// <T extends {...}> // 특정 객체
+// <T extends any[]> // 모든 배열
+// <T extends (...args: any) => any> // 모든 함수
+// <T extends abstract new (...args: any) => any> // 생성자 타입
+// <T extends keyof any> // string | number | symbol
