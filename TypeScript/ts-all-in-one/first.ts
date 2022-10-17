@@ -277,12 +277,14 @@ const predicate = (value: string | number): value is string =>
   typeof value === 'string';
 const filtered = ['1', 2, '3', 4, '5'].filter(predicate); // ['1', '3', '5'] string[]
 
-// forEach 타입 직접 만들기
+// 타입 직접 만들기
 interface ArrEx<T> {
   forEach(callback: (item: T) => void): void;
-  map(callback: (v) => void): void;
+  map<S>(callback: (v: T, i: number) => S): S[];
+  filter<S extends T>(callback: (v: T) => v is S): S[];
 }
 
+// forEach 타입 직접 만들기
 const forEachEx: ArrEx<number> = [1, 2, 3];
 forEachEx.forEach((item) => {
   console.log(item);
@@ -303,4 +305,17 @@ forEachEx2.forEach((item) => {
 
 // map 타입 직접 만들기
 const mapEx: ArrEx<number> = [1, 2, 3];
-const mapEx2 = mapEx.map((v) => v + 1);
+const mapEx2 = mapEx.map((v, i) => v + 1); // [2, 3, 4]
+const mapEx3 = mapEx.map((v, i) => v.toString()); // ['2', '3', '4']; string[]
+const mapEx4 = mapEx.map((v, i) => v % 2 === 0); // [false, true, false]; boolean[]
+const mapEx5 = forEachEx2.map((v, i) => +v); // string[] -> number[]
+
+// filter 타입 직접 만들기
+const filterEx: ArrEx<number> = [1, 2, 3];
+const filterEx2 = filterEx.filter((v): v is number => v % 2 === 0);
+
+const filterEx3: ArrEx<number | string> = [1, '2', 3, '4', 5];
+const filterEx4 = filterEx3.filter((v): v is string => typeof v === 'string'); // ['2', '4']; string[]
+const filterEx5 = filterEx3.filter((v): v is number => typeof v === 'number'); // [1, 3, 5,]; number[];
+
+// 공변성, 반공변성
