@@ -238,3 +238,69 @@ gen('1', '2');
 // <T extends (...args: any) => any> // 모든 함수
 // <T extends abstract new (...args: any) => any> // 생성자 타입
 // <T extends keyof any> // string | number | symbol
+
+// 제네릭 분석
+interface Array<T> {
+  forEach(
+    callbackfn: (value: T, index: number, array: T[]) => void,
+    thisArg?: any
+  ): void;
+  map<U>(
+    callbackfn: (value: T, index: number, array: T[]) => U,
+    thisArg?: any
+  ): U[];
+  filter<S extends T>(
+    predicate: (value: T, index: number, array: T[]) => value is S,
+    thisArg?: any
+  ): S[];
+}
+
+// forEach 제네릭 분석
+[1, 2, 3].forEach((value) => {
+  console.log(value);
+});
+['1', '2', '3'].forEach((value) => {
+  console.log(value);
+});
+[true, false, true].forEach((value) => {
+  console.log(value);
+});
+['123', 123, true].forEach((value) => {
+  console.log(value);
+});
+
+// map 제네릭 분석
+const strings = [1, 2, 3].map((item) => item.toString()); // ['1', '2', '3'] string[]
+
+// filter 제네릭 분석
+const predicate = (value: string | number): value is string =>
+  typeof value === 'string';
+const filtered = ['1', 2, '3', 4, '5'].filter(predicate); // ['1', '3', '5'] string[]
+
+// forEach 타입 직접 만들기
+interface ArrEx<T> {
+  forEach(callback: (item: T) => void): void;
+  map(callback: (v) => void): void;
+}
+
+const forEachEx: ArrEx<number> = [1, 2, 3];
+forEachEx.forEach((item) => {
+  console.log(item);
+});
+forEachEx.forEach((item) => {
+  console.log(item);
+  return '3';
+});
+
+const forEachEx2: ArrEx<string> = ['1', '2', '3'];
+forEachEx2.forEach((item) => {
+  console.log(item);
+});
+forEachEx2.forEach((item) => {
+  console.log(item);
+  return '3';
+});
+
+// map 타입 직접 만들기
+const mapEx: ArrEx<number> = [1, 2, 3];
+const mapEx2 = mapEx.map((v) => v + 1);
