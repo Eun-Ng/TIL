@@ -198,8 +198,8 @@ interface Imp {
 
 // private, protected
 class Pri implements Imp {
-  private a: string = 'Hello';
-  protected b: string = 'World';
+  a: string = 'Hello'; // can use private
+  b: string = 'World'; // can use protected
   c: string = '!';
 }
 class Pro extends Pri {}
@@ -228,9 +228,9 @@ opt = {a: 'hello'};
 
 // generic
 function gen<T extends string>(x: T, y: T): T {
-  return x + y;
+  return x;
 }
-gen(1, 2);
+// gen(1, 2);
 gen('1', '2');
 
 // <T extends {...}> // 특정 객체
