@@ -319,3 +319,57 @@ const filterEx4 = filterEx3.filter((v): v is string => typeof v === 'string'); /
 const filterEx5 = filterEx3.filter((v): v is number => typeof v === 'number'); // [1, 3, 5,]; number[];
 
 // 공변성, 반공변성
+function covariance(x: string | number): number {
+  return +x;
+}
+type covarianceEx = (x: string) => number | string;
+const covarianceEx2: covarianceEx = covariance;
+
+// 타입 오버로딩
+declare function overload(x: number, y: number): number;
+declare function overload(x: string, y: string, z: number): string;
+
+overload(1, 2);
+overload(2, 3);
+
+interface overload2 {
+  (x: number, y: number): number;
+  (x: string, y: string): string;
+}
+
+const overload3: overload2 = (x: any, y: any) => x + y;
+
+class overload4 {
+  overload3(x: number, y: number): number;
+  overload3(x: string, y: string): string;
+  // 구현부
+  overload3(x: any, y: any) {
+    return x + y;
+  }
+}
+
+const overload5 = new overload4().overload3(1, 2);
+
+// 에러 처리법
+interface Axios {
+  get(): void;
+}
+class CustomError extends Error {
+  response?: {
+    data: any;
+  };
+}
+declare const axios: Axios;
+
+(async () => {
+  try {
+    await axios.get();
+  } catch (err) {
+    if (err instanceof CustomError) {
+      console.error(err.response?.data);
+      err.response?.data;
+    }
+  }
+})();
+
+// infer
