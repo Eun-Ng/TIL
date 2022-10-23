@@ -372,4 +372,81 @@ declare const axios: Axios;
   }
 })();
 
-// infer
+// utility types
+// Partial 타입 분석
+interface Profile {
+  name: string;
+  age: number;
+  married: boolean;
+}
+
+type Name = Profile['name'];
+
+type P<T> = {
+  [Key in keyof T]?: T[Key];
+};
+
+const eunNg: Profile = {
+  name: 'eun',
+  age: 27,
+  married: false,
+};
+
+const newEunNg: P<Profile> = {
+  name: 'eun',
+  age: 27,
+};
+
+// Pick 타입 분석
+// Pick
+type P2<T, S extends keyof T> = {
+  [Key in S]: T[Key];
+};
+
+const newEunNg2: P2<Profile, 'name' | 'age'> = {
+  name: 'eun',
+  age: 27,
+};
+
+// Omit
+const newEunNg3: Omit<Profile, 'married'> = {
+  name: 'eun',
+  age: 27,
+};
+
+// Exclude
+type E = Exclude<keyof Profile, 'married'>;
+type Omit2<T, S extends keyof any> = Pick<T, Exclude<keyof T, S>>;
+const newEunNg4: Omit2<Profile, 'married'> = {
+  name: 'eun',
+  age: 27,
+};
+
+// Exclude & Extract
+// type Exclude<T, U> = T extends U ? never : T;
+// type Extract<T, U> = T extends U ? T : never;
+
+type Bugs = 'fly' | 'dragonfly' | '404';
+type Insects = Exclude<Bugs, '404'>; // 'fly' | 'dragonfly'
+type Insects2 = Extract<Bugs, 'fly' | 'dragonfly'>; // 'fly' | 'dragonfly';
+
+// Required
+interface Opt {
+  name?: string;
+  age?: number;
+  married?: boolean;
+}
+
+/* type Required<T> = {
+    [P in keyof T]-?: T[P];
+};
+*/
+type R<T> = {
+  [Key in keyof T]-?: T[Key];
+};
+
+const newEunNg5: R<Opt> = {
+  name: 'eun',
+  age: 27,
+  married: false,
+};
