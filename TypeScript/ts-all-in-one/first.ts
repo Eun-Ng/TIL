@@ -1,4 +1,4 @@
-import {textChangeRangeIsUnchanged} from 'typescript';
+import { textChangeRangeIsUnchanged } from 'typescript';
 
 // 기본적으로 변수, 속성, 매개변수, 리턴값에 타입이 붙음
 const a = '5';
@@ -11,7 +11,7 @@ const e = null;
 const f: true = true;
 
 // Object
-const obj: {lat: number; lon: number} = {lat: 37.5, lon: 127.5};
+const obj: { lat: number; lon: number } = { lat: 37.5, lon: 127.5 };
 
 // Array
 const arr: string[] = ['123', '456'];
@@ -88,7 +88,7 @@ const ODirection = {
 } as const;
 
 // 값 자체를 -> 타입으로 바꾸고 싶을때 typeof, key 값들만 뽑고 싶을때는 keyof
-const obj1 = {a: '123', b: 'hello', c: 'world'} as const;
+const obj1 = { a: '123', b: 'hello', c: 'world' } as const;
 // type Key = keyof typeof obj1 // 키 값만 뽑아냄
 type Key = typeof obj1[keyof typeof obj1]; // 밸류 값만 뽑아냄
 
@@ -108,14 +108,14 @@ run(ODirection.Right);
 // }
 
 // intersection(&). 두 속성 모두 만족해야함. union(|)은 하나만 만족해도 됨
-type Amp = {hello: 'world'} & {type: 'script'};
-const ts: Amp = {hello: 'world', type: 'script'};
+type Amp = { hello: 'world' } & { type: 'script' };
+const ts: Amp = { hello: 'world', type: 'script' };
 
 // type alias & interface
-type Animal = {breath: true};
-type Mammal = Animal & {breed: true};
-type Human = Mammal & {think: true};
-const eun: Human = {breath: true, breed: true, think: true};
+type Animal = { breath: true };
+type Mammal = Animal & { breed: true };
+type Human = Mammal & { think: true };
+const eun: Human = { breath: true, breed: true, think: true };
 
 interface A {
   breath: true;
@@ -123,7 +123,7 @@ interface A {
 interface B extends A {
   breed: true;
 }
-const inter: B = {breath: true, breed: true, think: true};
+const inter: B = { breath: true, breed: true, think: true };
 interface A {
   think: true;
 }
@@ -134,7 +134,7 @@ interface O {
 }
 // const obj2: O = {a: 'hello', b: 'world'}; // Error
 // 중간에 다른 변수 하나를 껴서 입력하면 검사를 안함
-const obj2 = {a: 'hello', b: 'world'};
+const obj2 = { a: 'hello', b: 'world' };
 const obj3: O = obj2;
 
 // void type. 리턴 값이 없거나 undefined인 타입
@@ -180,14 +180,14 @@ interface Read {
   b: string;
 }
 
-const aaaa: Read = {a: 'hello', b: 'world'};
+const aaaa: Read = { a: 'hello', b: 'world' };
 
 // Index Signature
-type Is = {[key: string]: string}; // 어떤 키든간에 전부 문자열이고, 값도 전부 문자열
+type Is = { [key: string]: string }; // 어떤 키든간에 전부 문자열이고, 값도 전부 문자열
 
 // Mapped Types
 type Mt = 'Human' | 'Mammal' | 'Animal';
-type M = {[key in Mt]: number}; // 키가 무조건 B 셋 중에 하나.
+type M = { [key in Mt]: number }; // 키가 무조건 B 셋 중에 하나.
 
 // readonly
 interface Imp {
@@ -223,8 +223,8 @@ abc(1);
 abc(1, 2);
 abc(1, 2, 3);
 
-let opt: {a: string; b?: string} = {a: 'hello', b: 'world'};
-opt = {a: 'hello'};
+let opt: { a: string; b?: string } = { a: 'hello', b: 'world' };
+opt = { a: 'hello' };
 
 // generic
 function gen<T extends string>(x: T, y: T): T {
@@ -241,18 +241,9 @@ gen('1', '2');
 
 // 제네릭 분석
 interface Array<T> {
-  forEach(
-    callbackfn: (value: T, index: number, array: T[]) => void,
-    thisArg?: any
-  ): void;
-  map<U>(
-    callbackfn: (value: T, index: number, array: T[]) => U,
-    thisArg?: any
-  ): U[];
-  filter<S extends T>(
-    predicate: (value: T, index: number, array: T[]) => value is S,
-    thisArg?: any
-  ): S[];
+  forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void;
+  map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[];
+  filter<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S, thisArg?: any): S[];
 }
 
 // forEach 제네릭 분석
@@ -273,8 +264,7 @@ interface Array<T> {
 const strings = [1, 2, 3].map((item) => item.toString()); // ['1', '2', '3'] string[]
 
 // filter 제네릭 분석
-const predicate = (value: string | number): value is string =>
-  typeof value === 'string';
+const predicate = (value: string | number): value is string => typeof value === 'string';
 const filtered = ['1', 2, '3', 4, '5'].filter(predicate); // ['1', '3', '5'] string[]
 
 // 타입 직접 만들기
@@ -450,3 +440,84 @@ const newEunNg5: R<Opt> = {
   age: 27,
   married: false,
 };
+
+// Record
+type Re<T extends keyof any, S> = {
+  [Key in T]: S;
+};
+
+const ReEx: Re<string, number> = { a: 3, b: 5, c: 7 };
+
+// NonNullable
+type Non = string | null | undefined | boolean | number;
+type Non2 = NonNullable<Non>; // string, boolean, number
+
+type NonEx<T> = T extends null | undefined ? never : T; // string | boolean | number
+
+// infer
+function inf(x: number, y: string, z: boolean): { x: number; y: string; z: boolean } {
+  return { x, y, z };
+}
+
+// 함수의 파라미터 타입 가져오기
+type Infer<T extends (...args: any) => any> = T extends (...args: infer A) => any ? A : never;
+
+// 함수의 리턴 타입을 가져오기
+type InferReturn<T extends (...args: any) => any> = T extends (...args: any) => infer A ? A : never;
+
+type Params = Parameters<typeof inf>;
+type Ret = ReturnType<typeof inf>;
+type First = Params[0]; // number
+
+// ConstructorParameters
+type ConstructorParameters<T extends abstract new (...args: any) => any> = T extends abstract new (
+  ...args: infer P
+) => any
+  ? P
+  : never;
+
+class ConsEx {
+  a: string;
+  b: number;
+  c: boolean;
+  constructor(a: string, b: number, c: boolean) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
+  }
+}
+
+const consEx2 = new ConsEx('123', 123, true);
+// 생성자 타입 얻어오기
+type ConsType = ConstructorParameters<typeof ConsEx>; // typeof 클래스가 생성자
+// 인스턴스 타입 얻어오기
+type ConsIns = InstanceType<typeof ConsEx>;
+
+const consEx3: ConsEx = new ConsEx('456', 456, false); // 인스턴스
+
+// InstanceType
+type InstanceType<T extends abstract new (...args: any) => any> = T extends abstract new (...args: any) => infer R
+  ? R
+  : any;
+
+// Promise 타입 분석하기
+const p1 = Promise.resolve(1)
+  .then((a) => a + 1)
+  .then((a) => a.toString());
+// Promise<number>, Promise<number>, Promise<number>, Promise<string>
+const p2 = Promise.resolve(2); // Promise<number>
+const p3 = new Promise((res, rej) => {
+  // Promise<unknown>
+  setTimeout(res, 1000);
+});
+
+Promise.all([p1, p2, p3]).then((result) => {
+  // {'0': string, '1': number, '2': unknown, length: 3}
+  console.log(result); // 타입 추론이 정확하게 됨. ['3', 2, undefined]
+});
+
+// T = [p1, p2, p3] ('0': p1, '1': p2, '2': p3, length: 3)
+// keyof T = '0' | '1' | '2' | 'length'
+
+type Result = Awaited<Promise<Promise<Promise<number>>>>; // number
+type Result2 = Awaited<{ then(onfulfilled: (v: number) => number): any }>; // thenable
