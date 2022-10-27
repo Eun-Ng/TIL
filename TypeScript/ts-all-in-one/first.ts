@@ -521,3 +521,47 @@ Promise.all([p1, p2, p3]).then((result) => {
 
 type Result = Awaited<Promise<Promise<Promise<number>>>>; // number
 type Result2 = Awaited<{ then(onfulfilled: (v: number) => number): any }>; // thenable
+
+// bind 타입 분석하기
+function bindEx(this: Window | typeof bindEx2) {
+  console.log(this.name);
+}
+
+const bindEx2 = { name: 'Eun' };
+const bindEx3 = bindEx.bind(bindEx2);
+bindEx3();
+
+type This = ThisParameterType<typeof bindEx>;
+type NoThis = OmitThisParameter<typeof bindEx>;
+
+const zerocho = {
+  name: 'zerocho',
+  sayHello(this: { name: string }) {
+    console.log(`hi ${this.name}`);
+  },
+};
+
+const sayHello = zerocho.sayHello;
+const sayHi = zerocho.sayHello.bind({ name: 'nero' });
+
+function addEx(a: number, b: number, c: number, d: number, e: number, f: number) {
+  return a + b + c + d + e + f;
+}
+
+const addEx1 = addEx.bind(null);
+addEx1(1, 2, 3, 4, 5, 6);
+
+const addEx2 = addEx.bind(null, 1);
+addEx2(2, 3, 4, 5, 6);
+
+const addEx3 = addEx.bind(null, 1, 2);
+addEx3(3, 4, 5, 6);
+
+const addEx4 = addEx.bind(null, 1, 2, 3);
+addEx4(4, 5, 6);
+
+const addEx5 = addEx.bind(null, 1, 2, 3, 4);
+addEx5(5, 6);
+
+const addEx6 = addEx.bind(null, 1, 2, 3, 4, 5);
+addEx6(6);
