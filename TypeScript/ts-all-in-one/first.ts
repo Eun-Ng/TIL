@@ -563,5 +563,16 @@ addEx4(4, 5, 6);
 const addEx5 = addEx.bind(null, 1, 2, 3, 4);
 addEx5(5, 6);
 
-const addEx6 = addEx.bind(null, 1, 2, 3, 4, 5);
-addEx6(6);
+// Error
+// const addEx6 = addEx.bind(null, 1, 2, 3, 4, 5);
+// addEx6(6);
+
+// flat 타입 분석하기
+const flat = [1, 2, 3, [1, 2], [[1], [2]]].flat(); // [1, 2, 3, 1, 2, [1], [2]];
+const flat2 = [1, 2, 3, [1, 2]].flat(); // [1, 2, 3, 1, 2];
+
+// FlatArray<(number[] | number[][] | number[][][]), 2>[]
+// FlatArray<(number | number[] | number[][]), 1>[]
+// FlatArray<(number | number[]), 0>[]
+// FlatArray<number, -1>[]
+// number[]
