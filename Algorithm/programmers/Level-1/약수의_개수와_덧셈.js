@@ -24,7 +24,7 @@ const solution = (left, right) => {
       if (i % j === 0) val.push(j);
       // i(left~right)값과 j(0~right)값이 나눠진다면 j값은 i값의 약수이기에 빈 배열에 j값을 푸쉬
     }
-    val.length % 2 === 0 ? (answer += i) : (answer -= i); // 배열의 길이가 2로 나눠진다면 약수의 개수가 짝수이기에 러스, 반대의 경우엔 홀수이기에 마이너스
+    val.length % 2 === 0 ? (answer += i) : (answer -= i); // 배열의 길이가 2로 나눠진다면 약수의 개수가 짝수이기에 플러스, 반대의 경우엔 홀수이기에 마이너스
   }
   return answer;
 };
