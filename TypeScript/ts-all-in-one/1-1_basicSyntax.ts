@@ -1,3 +1,4 @@
+// 1. 타입스크립트는 변수, 매개변수, 리턴값에 타입 붙이는 것!
 // 기본적으로 변수, 속성, 매개변수, 리턴값에 타입이 붙음
 const a = '5';
 const b = 5;
@@ -29,9 +30,11 @@ interface Minus {
   (x: number, y: number): number;
 }
 
+// 3. js 변환 시 사라지는 부분을 파악하자.
 let aa = 123;
 aa = 'hello' as unknown as number;
 
+// 4. never 타입과 느낌표(non-null assertion)
 try {
   const array: string[] = [];
   array.push('hello');
@@ -39,34 +42,45 @@ try {
   error;
 }
 
+const body: Element = document.querySelector('#body')!;
+console.log(body);
+
 // null이나 undefined가 아님을 보장. 비추. ! 대신 if 사용
-// const head: Element = document.querySelector('#head')!;
-// console.log(head);
+const head = document.querySelector('#head');
+if (head) {
+  head.innerHTML = 'hello world';
+  console.log(head);
+}
 
-// const head = document.querySelector('#head');
-// if (head) {
-//   head.innerHTML = 'hello world';
-//   console.log(head);
-// }
+// 5. 원시 래퍼 타입, 템플릿 리터럴 타입, rest, 튜플
+// primitive wrapper type
+const primitiveWrapper: string = 'hello';
+const primitiveWrapper2: String = 'world';
 
-/**  1 - 5. */
+function primitiveWrapper3(a: string, b: string) {}
+// primitiveWrapper3(primitiveWrapper, primitiveWrapper2); // Error 도출. 원시 값에 원시 래퍼 값
+
 // template literal type
 type World = 'world' | 'hell';
-
 // type Greeting = 'hello world'
 type Greeting = `hello ${World}`;
 const world: Greeting = 'hello hell';
 
+// rest
+function rest(a: string, ...args: string[]) {
+  console.log(a, args); // '1', ['2', '3']
+}
+rest('1', '2', '3');
+
 // Array, tuple type
 let strArr: string[] = [];
 let strArr2: Array<string> = [];
-function rest(...args: string[]) {}
 
 const tuple: [string, number] = ['1', 1];
 // tuple[2] = 'hello'; 얘는 막아주는데
 tuple.push('hello'); // 얘는 못막아줌
 
-/**  1 - 6. enum, keyof, typeof */
+// 6. enum, keyof, typeof
 // enum. 서로 연관된 상수들을 하나의 namespace로 묶어 추상화시키기 위해 도입된 것.
 const enum EDirection {
   Up,
@@ -100,6 +114,7 @@ function run(dir: Direction) {}
 walk(EDirection.Left);
 run(ODirection.Right);
 
+// 7. union(|)고ㅏ intersection(&)
 // union type(|) 둘 중에 한 속성만 있어도 됨
 // function uni(x: string | number, y: string | number): string | number {
 //   return x + y;
@@ -109,7 +124,7 @@ run(ODirection.Right);
 type Amp = { hello: 'world' } & { type: 'script' };
 const ts: Amp = { hello: 'world', type: 'script' };
 
-// type alias & interface
+// 8. type alias & interface
 type Animal = { breath: true };
 type Mammal = Animal & { breed: true };
 type Human = Mammal & { think: true };
@@ -126,6 +141,7 @@ interface A {
   think: true;
 }
 
+// 9. 좁은 타입과 넓은 타입
 // 객체 리터럴 잉여 속성 검사
 interface O {
   a: string;
@@ -135,7 +151,7 @@ interface O {
 const obj2 = { a: 'hello', b: 'world' };
 const obj3: O = obj2;
 
-// void type. 리턴 값이 없거나 undefined인 타입
+// 10. void의 두가지 사용법
 function forEach(arr: number[], callback: (el: number) => undefined): void; // 함수 선언
 function forEach() {
   // 구현부
@@ -144,14 +160,14 @@ function forEach() {
 // declare 사용시 함수 타입 선언만 가능. 단, 컴파일시 사라짐.
 // declare function forEach(arr: number[], callback: (el: number) => undefined): void; // 함수 선언
 
-// unknown & any. unknown은 사용시 타입 명시해줘야 함.
+// 11. unknown & any
 try {
 } catch (error) {
   // 타입스크립트에서 제공하는 Error 타입
   (error as Error).message;
 }
 
-// 타입 가드
+// 12. 타입 가드(타입 좁히기)
 function numOrStr(a: number | string) {
   if (typeof a === 'string') {
     a.split(',');
