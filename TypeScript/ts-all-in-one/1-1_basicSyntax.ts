@@ -167,7 +167,7 @@ try {
   (error as Error).message;
 }
 
-// 12. 타입 가드(타입 좁히기)
+// 12~13. 타입 가드, 커스텀 타입 가드
 function numOrStr(a: number | string) {
   if (typeof a === 'string') {
     a.split(',');
@@ -188,6 +188,43 @@ function numOrNumArr(a: number | number[]) {
   }
 }
 
+type tsGuard1 = { type: 'b'; bbb: string };
+type tsGuard2 = { type: 'c'; ccc: string };
+type tsGuard3 = { type: 'd'; ddd: string };
+type tsGuard4 = tsGuard1 | tsGuard2 | tsGuard3;
+function typeCheck(a: tsGuard4) {
+  if (a.type === 'b') {
+    // 타입이 점차 줄어든다.
+    a.bbb;
+  } else if (a.type === 'c') {
+    a.ccc;
+  } else {
+    a.ddd;
+  }
+}
+
+interface Cat {
+  meow: number;
+}
+interface Dog {
+  bow: number;
+}
+function catOrDog(a: Cat | Dog): a is Dog {
+  if ((a as Cat).meow) {
+    return false;
+  }
+  return true;
+}
+
+const cat: Cat | Dog = { meow: 3 };
+if (catOrDog(cat)) {
+  console.log(cat.meow);
+}
+if ('meow' in cat) {
+  console.log(cat.meow);
+}
+
+// 15. readonly, index signature, mapped types
 // readonly
 interface Read {
   readonly a: string;
@@ -210,6 +247,7 @@ interface Imp {
   c: string;
 }
 
+// 16. New feature on Class
 // private, protected
 class Pri implements Imp {
   a: string = 'Hello'; // can use private
@@ -231,6 +269,7 @@ class Work extends User {
   }
 }
 
+// 17. Basic Optional & Generic
 // optional
 function abc(a: number, b?: number, c?: number) {}
 abc(1);
