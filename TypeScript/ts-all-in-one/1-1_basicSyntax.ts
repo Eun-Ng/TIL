@@ -283,7 +283,13 @@ opt = { a: 'hello' };
 function gen<T extends string>(x: T, y: T): T {
   return x;
 }
-// gen(1, 2);
+// gen(1, 2); // Error
+gen('1', '2');
+
+function gen2<T extends string>(x: T, y: T): T {
+  return x;
+}
+// gen(1, 2); // Error
 gen('1', '2');
 
 // <T extends {...}> // 특정 객체
